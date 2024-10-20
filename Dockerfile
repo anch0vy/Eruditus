@@ -5,7 +5,7 @@ RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod
     && dpkg -i packages-microsoft-prod.deb \
     && rm packages-microsoft-prod.deb
 
-RUN apt-get update && apt-get install -y dotnet-sdk-8.0 \
+RUN apt-get update && apt-get install -y dotnet-sdk-8.0 unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -32,7 +32,8 @@ USER user
 # Prevent caching the subsequent "git clone" layer.
 # https://github.com/moby/moby/issues/1996#issuecomment-1152463036
 ADD http://date.jsontest.com /etc/builddate
-RUN git clone https://github.com/hfz1337/DiscordChatExporter ~/DiscordChatExporter
+RUN wget https://github.com/Tyrrrz/DiscordChatExporter/releases/download/2.43.3/DiscordChatExporter.Cli.linux-x64.zip -O ~/DiscordChatExporter.Cli.linux-x64.zip
+RUN unzip ~/DiscordChatExporter.Cli.linux-x64.zip -d ~/DiscordChatExporter
 
 ARG CHATLOGS_REPO=git@github.com:anch0vy/discord_backup_for_tmp.git
 

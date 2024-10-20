@@ -15,12 +15,16 @@ mkdir -p "$OUTPUT_DIR"
 # Load the bot token
 export $(cat /eruditus/.env | grep 'DISCORD_TOKEN' | xargs)
 
+# Read channel IDs from the file
+CHANNEL_IDS=$(tr '\n' ' ' < "$CHANNELS_FILE" | sed 's/ $//')
+
 # Export the chat logs
 cd ~/DiscordChatExporter
-dotnet run --project DiscordChatExporter.Cli export \
+./DiscordChatExporter.Cli export \
   --token "$DISCORD_TOKEN" \
-  --file "$CHANNELS_FILE" \
-  --output "$OUTPUT_DIR"
+  --channel $CHANNEL_IDS \
+  --output "$OUTPUT_DIR" \
+  --format Json
 
 # Commit & push
 cd ~/chatlogs
