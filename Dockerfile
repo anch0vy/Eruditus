@@ -32,8 +32,9 @@ USER user
 # Prevent caching the subsequent "git clone" layer.
 # https://github.com/moby/moby/issues/1996#issuecomment-1152463036
 ADD http://date.jsontest.com /etc/builddate
-RUN wget https://github.com/Tyrrrz/DiscordChatExporter/releases/download/2.43.3/DiscordChatExporter.Cli.linux-x64.zip -O ~/DiscordChatExporter.Cli.linux-x64.zip
+COPY ./DiscordChatExporter.Cli.linux-x64.zip /home/user/DiscordChatExporter.Cli.linux-x64.zip
 RUN unzip ~/DiscordChatExporter.Cli.linux-x64.zip -d ~/DiscordChatExporter
+RUN chmod +x ~/DiscordChatExporter/DiscordChatExporter.Cli
 
 ARG CHATLOGS_REPO=git@github.com:anch0vy/discord_backup_for_tmp.git
 

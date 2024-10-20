@@ -24,7 +24,7 @@ cd ~/DiscordChatExporter
   --token "$DISCORD_TOKEN" \
   --channel $CHANNEL_IDS \
   --output "$OUTPUT_DIR" \
-  --format Json
+  --format Json --media
 
 # Commit & push
 cd ~/chatlogs

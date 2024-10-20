@@ -1432,7 +1432,9 @@ class CTF(app_commands.Group):
         """
 
         async def _handle_process(process: asyncio.subprocess.Process):
-            _, _ = await process.communicate()
+            out = await process.communicate()
+            print("For logging... -- anch0vy")
+            print(out)
             channel, _, _ = self._chat_export_tasks.pop(0)
             message = (
                 "Chat export task finished successfully, "
