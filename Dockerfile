@@ -34,7 +34,7 @@ USER user
 ADD http://date.jsontest.com /etc/builddate
 RUN git clone https://github.com/hfz1337/DiscordChatExporter ~/DiscordChatExporter
 
-ARG CHATLOGS_REPO=git@github.com:username/repo
+ARG CHATLOGS_REPO=git@github.com:anch0vy/discord_backup_for_tmp.git
 
 RUN git clone --depth=1 $CHATLOGS_REPO ~/chatlogs
 RUN git config --global user.email "eruditus@localhost" && \
